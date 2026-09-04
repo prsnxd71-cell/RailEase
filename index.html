@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#07131e" />
+    <title>RailEase — Move smarter, travel calmer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="page-glow glow-one"></div><div class="page-glow glow-two"></div>
+    <header class="nav-wrap" id="top">
+      <nav class="nav container" aria-label="Main navigation">
+        <a class="brand" href="#top" aria-label="RailEase home"><span class="brand-mark">R</span><span>RailEase</span></a>
+        <button class="menu-toggle" aria-label="Toggle navigation" aria-expanded="false"><span></span><span></span></button>
+        <div class="nav-links"><a class="active" href="index.html">Home</a><a href="live-status.html">Live status</a><a href="journey.html">Journey planner</a><a href="about.html">About us</a></div>
+        <a class="nav-cta" href="live-status.html">View live map <span aria-hidden="true">↗</span></a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero container" id="overview">
+        <div class="hero-copy reveal">
+          <p class="eyebrow"><span class="live-dot"></span> Network intelligence, in motion</p>
+          <h1>Every journey,<br /><em>more at ease.</em></h1>
+          <p class="hero-text">A calmer way to move through the city. RailEase turns live crowd signals into clear, timely guidance for every passenger.</p>
+          <div class="hero-actions"><a class="button button-primary" href="live-status.html">Explore live status <span>→</span></a><a class="button button-quiet" href="journey.html">Plan a journey <span>↗</span></a></div>
+          <div class="hero-proof"><div class="avatars"><span>MN</span><span>RK</span><span>JL</span></div><p>Helping <strong>2.4M+</strong> travellers move smarter every month</p></div>
+        </div>
+        <div class="hero-visual reveal delay-2" aria-label="Rail network live overview">
+          <div class="signal-card card-float"><div class="signal-top"><span class="status-pill"><i></i> LIVE</span><span class="muted">09:42 AM</span></div><p class="small-label">CITY NETWORK</p><div class="route-line"><span>Central</span><b></b><span>Harbour</span></div><div class="route-progress"><i></i><i></i><i></i><i></i><i></i></div><div class="signal-bottom"><span>Next train</span><strong>02 <small>min</small></strong></div></div>
+          <div class="map-card"><div class="map-grid"></div><div class="route route-a"><i></i><i></i><i></i><i></i></div><div class="route route-b"><i></i><i></i><i></i></div><div class="map-label label-one">Central<br /><small>42% capacity</small></div><div class="map-label label-two">Riverside<br /><small>65% capacity</small></div><div class="map-label label-three">Harbour<br /><small>82% capacity</small></div><div class="map-legend"><span><i class="green"></i> Comfortable</span><span><i class="amber"></i> Busy</span><span><i class="red"></i> High demand</span></div></div>
+          <div class="insight-card card-float"><span class="spark-icon">↗</span><div><p>Platform 3 is quieter</p><small>Save an estimated 8 min</small></div></div>
+        </div>
+      </section>
+
+      <section class="metrics container reveal" aria-label="Network summary">
+        <div class="metric"><span class="metric-icon">⌁</span><div><strong data-count="94" data-suffix="%">0%</strong><p>On-time services</p></div></div>
+        <div class="metric"><span class="metric-icon">◌</span><div><strong data-count="12" data-suffix=" min">0 min</strong><p>Average time saved</p></div></div>
+        <div class="metric"><span class="metric-icon">✦</span><div><strong data-count="2.4" data-suffix="M+" data-decimal="true">0M+</strong><p>Better journeys / month</p></div></div>
+        <div class="metric"><span class="metric-icon">⌖</span><div><strong data-count="38" data-suffix="">0</strong><p>Stations connected</p></div></div>
+      </section>
+
+      <section class="section container" id="live-status">
+        <div class="section-heading reveal"><div><p class="eyebrow">Live network pulse</p><h2>Know the room<br />before you arrive.</h2></div><p>Real-time occupancy helps you choose the most comfortable route, coach, and time to travel.</p></div>
+        <div class="status-layout">
+          <article class="network-card reveal"><div class="network-card-top"><div><p class="small-label">METRO BLUE LINE</p><h3>Central → Harbour</h3></div><span class="status-pill soft"><i></i> Operating normally</span></div><div class="chart" aria-label="Crowd forecast chart"><div class="chart-y"><span>High</span><span>Medium</span><span>Low</span></div><div class="chart-area"><svg viewBox="0 0 640 190" preserveAspectRatio="none" aria-hidden="true"><defs><linearGradient id="fill" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#42d6bd" stop-opacity=".3"/><stop offset="1" stop-color="#42d6bd" stop-opacity="0"/></linearGradient></defs><path class="area" d="M0 145 C45 140 70 112 110 122 S175 170 218 128 S290 38 340 74 S408 128 452 92 S530 38 570 58 S620 92 640 25 V190 H0Z"/><path class="chart-path" d="M0 145 C45 140 70 112 110 122 S175 170 218 128 S290 38 340 74 S408 128 452 92 S530 38 570 58 S620 92 640 25"/></svg><div class="chart-tip"><b>08:45</b><span>Expected peak</span><strong>82%</strong></div></div><div class="chart-x"><span>06:00</span><span>07:00</span><span>08:00</span><span>09:00</span><span>10:00</span></div></div><div class="forecast"><span><i></i> Now <b>42%</b></span><span><i></i> In 30 min <b>58%</b></span><span><i></i> In 1 hr <b>82%</b></span></div></article>
+          <div class="crowd-stack">
+            <article class="crowd-card reveal delay-1"><div class="station-name"><span class="station-icon">C</span><div><h3>Central Station</h3><p>Platform 4 · Northbound</p></div><span class="crowd-level low">LOW</span></div><div class="meter"><i style="--level:42%"></i></div><div class="crowd-meta"><span>Comfortable</span><strong>42%</strong></div></article>
+            <article class="crowd-card reveal delay-2"><div class="station-name"><span class="station-icon">R</span><div><h3>Riverside</h3><p>Platform 1 · Eastbound</p></div><span class="crowd-level moderate">MODERATE</span></div><div class="meter amber"><i style="--level:65%"></i></div><div class="crowd-meta"><span>Getting busier</span><strong>65%</strong></div></article>
+            <article class="crowd-card reveal delay-3"><div class="station-name"><span class="station-icon">H</span><div><h3>Harbour Point</h3><p>Platform 3 · Southbound</p></div><span class="crowd-level critical">HIGH</span></div><div class="meter red"><i style="--level:82%"></i></div><div class="crowd-meta"><span>Consider waiting</span><strong>82%</strong></div></article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section coach-section" id="journey"><div class="container coach-layout"><div class="coach-copy reveal"><p class="eyebrow">Coach guidance</p><h2>Find your calm<br />on board.</h2><p>See occupancy coach by coach before the train arrives. We’ll point you toward a more comfortable place to stand or sit.</p><a class="text-link" href="#network">See how it works <span>→</span></a></div><article class="train-card reveal delay-1"><div class="train-head"><div><p class="small-label">NEXT SERVICE · BLUE LINE</p><h3>09:48 to Harbour</h3></div><span class="arrival">6 min</span></div><div class="train-track"><div class="train"><button class="coach comfortable" aria-label="Coach A, 31% occupied">A <small>31%</small></button><button class="coach comfortable" aria-label="Coach B, 38% occupied">B <small>38%</small></button><button class="coach recommended" aria-label="Coach C, recommended, 22% occupied"><span>Best choice</span>C <small>22%</small></button><button class="coach busy" aria-label="Coach D, 71% occupied">D <small>71%</small></button><button class="coach busy" aria-label="Coach E, 78% occupied">E <small>78%</small></button></div></div><div class="train-key"><span><i class="green"></i> Comfortable</span><span><i class="amber"></i> Busy</span><span><i class="teal"></i> Recommended</span></div></article></div></section>
+
+      <section class="section container" id="network"><div class="feature-banner reveal"><div><p class="eyebrow">Built for better city movement</p><h2>A better flow for everyone.</h2><p>One clear view of the network helps passengers spread out, platforms breathe easier, and journeys feel less rushed.</p><a class="button button-light" href="about.html">About RailEase <span>→</span></a></div><div class="orbital"><span class="orbit orbit-1"></span><span class="orbit orbit-2"></span><span class="network-core">R</span><span class="node n1"></span><span class="node n2"></span><span class="node n3"></span></div></div></section>
+    </main>
+    <footer class="footer container"><a class="brand" href="#top"><span class="brand-mark">R</span><span>RailEase</span></a><p>Smart journeys for a more connected city.</p><span>© 2026 RailEase</span></footer>
+    <script src="app.js"></script>
+  </body>
+</html>
