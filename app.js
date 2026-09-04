@@ -4,6 +4,14 @@ if (!document.querySelector('link[href="mobile.css"]')) {
   const mobileStyles = document.createElement('link');
   mobileStyles.rel = 'stylesheet'; mobileStyles.href = 'mobile.css'; document.head.append(mobileStyles);
 }
+if (!document.querySelector('link[href="portrait.css"]')) {
+  const portraitStyles = document.createElement('link');
+  portraitStyles.rel = 'stylesheet'; portraitStyles.href = 'portrait.css'; document.head.append(portraitStyles);
+}
+if (!document.querySelector('link[href="narrow.css"]')) {
+  const narrowStyles = document.createElement('link');
+  narrowStyles.rel = 'stylesheet'; narrowStyles.href = 'narrow.css'; document.head.append(narrowStyles);
+}
 
 const nav = document.querySelector('.nav-wrap');
 const menu = document.querySelector('.menu-toggle');
