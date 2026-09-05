@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Status | RailEase</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = { theme: { extend: { fontFamily: { sans: ['Inter', 'sans-serif'] }, colors: { brand: { 400: '#2dd4bf', 500: '#14b8a6', 900: '#134e4a' } } } } }
+    </script>
+    <style>
+        body { background-color: #020617; background-image: linear-gradient(to bottom, rgba(2, 6, 23, 0.85), rgba(2, 6, 23, 0.874)), url('Traindesign.png'); background-size: cover; background-position: center; background-attachment: fixed; background-repeat: no-repeat; -webkit-font-smoothing: antialiased; }
+        .reveal { opacity: 0; transform: translateY(20px); transition: all 0.6s ease; }
+        .reveal.is-visible { opacity: 1; transform: translateY(0); }
+        .nav-scrolled { background-color: rgba(2, 6, 23, 0.85); backdrop-filter: blur(16px); border-bottom: 1px solid rgba(30, 41, 59, 0.5); }
+        .card-hover:hover { transform: translateY(-4px); box-shadow: 0 12px 30px -10px rgba(0,0,0,0.5); border-color: rgba(71, 85, 105, 1); }
+    </style>
+</head>
+<body class="bg-slate-950 text-slate-300">
+
+    <nav id="navbar" class="fixed w-full z-50 top-0 transition-all duration-300 bg-transparent border-b border-transparent">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center h-20">
+            <a href="index.html" class="flex items-center gap-2 group">
+                <div class="w-10 h-10 bg-brand-500 rounded-xl flex items-center justify-center transform group-hover:scale-105 transition-transform">
+                    <i data-lucide="train" class="text-white w-6 h-6"></i>
+                </div>
+                <span class="font-bold text-2xl text-white">RailEase</span>
+            </a>
+            <div class="hidden md:flex space-x-8">
+                <a href="live-status.html" class="text-brand-400 font-medium">Live Status</a>
+                <a href="plan-journey.html" class="text-slate-300 hover:text-brand-400 font-medium transition-colors">Plan Journey</a>
+                <a href="about.html" class="text-slate-300 hover:text-brand-400 font-medium transition-colors">About Us</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="pt-32 pb-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+        <div class="mb-12 reveal">
+            <h1 class="text-4xl font-bold text-white mb-4">Network Live Status</h1>
+            <p class="text-slate-400 text-lg">Real-time crowd intelligence across all major transit hubs.</p>
+            <div class="mt-8 flex gap-4 max-w-2xl relative">
+                <i data-lucide="search" class="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500"></i>
+                <input id="search-input" type="text" placeholder="Search for a station..." class="w-full bg-slate-900 border border-slate-800 text-white rounded-xl pl-12 pr-4 py-4 focus:outline-none focus:border-brand-500 transition-colors shadow-inner">
+            </div>
+        </div>
+        <div id="status-grid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <p class="text-slate-400 col-span-full">Loading live status...</p>
+</main>
+
+    <script>
+        lucide.createIcons();
+        window.addEventListener('scroll', () => { document.getElementById('navbar').classList.toggle('nav-scrolled', window.scrollY > 10); });
+        setTimeout(() => { document.querySelectorAll('.reveal').forEach(el => el.classList.add('is-visible')); }, 100);
+
+        async function loadLiveStatus() {
+            const grid = document.getElementById('status-grid');
+            try {
+                const res = await fetch('/api/live-status');
+                const data = await res.json();
+                if (!data.success || !data.data) { grid.innerHTML = '<p class="text-rose-400">Failed to load live status.</p>'; return; }
+                let html = '';
+                for (const s of data.data) {
+                    const lc = s.level === 'CRITICAL' ? 'rose' : s.level === 'HIGH' ? 'orange' : 'emerald';
+                    const shadow = lc === 'rose' ? '225,29,72' : lc === 'orange' ? '249,115,22' : '16,185,129';
+                    const pct = s.congestion;
+                    html += '<div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 transition-all duration-300 card-hover reveal">';
+                    html += '<div class="flex justify-between items-start mb-6">';
+                    html += '<div><h3 class="text-xl font-bold text-white">' + s.name + '</h3><p class="text-sm text-slate-400">' + s.city + ' (' + s.code + ')</p></div>';
+                    html += '<span class="px-2.5 py-1 bg-' + lc + '-500/10 text-' + lc + '-400 border border-' + lc + '-500/20 rounded-md text-xs font-bold flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-' + lc + '-500 animate-pulse"></span> ' + s.level + '</span>';
+                    html += '</div>';
+                    html += '<div><div class="flex justify-between text-sm mb-1"><span class="text-slate-400">Overall Congestion</span><span class="text-white font-bold">' + pct + '%</span></div>';
+                    html += '<div class="h-1.5 w-full bg-slate-800 rounded-full overflow-hidden"><div class="h-full bg-' + lc + '-500" style="width:' + pct + '%; box-shadow:0 0 8px rgba(' + shadow + ',0.8)"></div></div></div>';
+                    html += '</div>';
+                }
+                grid.innerHTML = html; lucide.createIcons();
+            } catch (err) { grid.innerHTML = '<p class="text-rose-400">Server error.</p>'; }
+        }
+        loadLiveStatus();
+        setInterval(loadLiveStatus, 30000);
+
+        document.getElementById('search-input').addEventListener('input', function() {
+            const q = this.value.toLowerCase();
+            document.querySelectorAll('#status-grid > div').forEach(card => {
+                card.style.display = card.textContent.toLowerCase().includes(q) ? '' : 'none';
+            });
+        });
+    </script>
+</body>
+</html>

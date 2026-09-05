@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RailEase | Smart Mobility Platform</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'sans-serif'] },
+                    colors: { brand: { 50: '#f0fdfa', 100: '#ccfbf1', 400: '#2dd4bf', 500: '#14b8a6', 600: '#0d9488', 900: '#134e4a' } }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+    background-color: #020617; 
+    background-image: 
+        linear-gradient(to bottom, rgba(2, 6, 23, 0.85), rgba(2, 6, 23, 0.874)), 
+        url('Traindesign.png'); 
+    background-size: cover; background-position: center; background-attachment: fixed; background-repeat: no-repeat; }
+        @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes scaleIn { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
+        .load-nav { animation: fadeUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0s forwards; opacity: 0; }
+        .load-h1 { animation: fadeUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.1s forwards; opacity: 0; }
+        .load-p { animation: fadeUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards; opacity: 0; }
+        .load-cta { animation: fadeUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.3s forwards; opacity: 0; }
+        .load-visual { animation: scaleIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.4s forwards; opacity: 0; }
+        .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1); }
+        .reveal.is-visible { opacity: 1; transform: translateY(0); }
+        .premium-card { transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1); will-change: transform, box-shadow; }
+        .premium-card:hover { transform: translateY(-4px) scale(1.005); box-shadow: 0 16px 40px -12px rgba(0, 0, 0, 0.6); }
+        .premium-btn { transition: transform 0.2s ease, box-shadow 0.2s ease; will-change: transform; }
+        .premium-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 20px -6px rgba(20, 184, 166, 0.4); }
+        .nav-scrolled { background-color: rgba(2, 6, 23, 0.85); backdrop-filter: blur(16px); box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3); border-bottom: 1px solid rgba(30, 41, 59, 0.5); }
+    </style>
+</head>
+<body class="bg-slate-950 text-slate-300">
+
+    <nav id="navbar" class="fixed w-full z-50 top-0 transition-all duration-300 bg-transparent border-b border-transparent load-nav">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <a href="index.html" class="flex items-center gap-2 cursor-pointer group">
+                    <div class="w-10 h-10 bg-brand-500 rounded-xl flex items-center justify-center transform group-hover:scale-105 transition-transform duration-300 shadow-lg shadow-brand-500/20">
+                        <i data-lucide="train" class="text-white w-6 h-6"></i>
+                    </div>
+                    <span class="font-bold text-2xl tracking-tight text-white">RailEase</span>
+                </a>
+                
+                <div class="hidden md:flex space-x-8">
+                    <a href="live-status.html" class="text-slate-300 hover:text-brand-400 font-medium transition-colors relative group">
+                        Live Status
+                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-brand-500 transition-all duration-300 group-hover:w-full"></span>
+                    </a>
+                    <a href="plan-journey.html" class="text-slate-300 hover:text-brand-400 font-medium transition-colors relative group">
+                        Plan Journey
+                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-brand-500 transition-all duration-300 group-hover:w-full"></span>
+                    </a>
+                    <a href="about.html" class="text-slate-300 hover:text-brand-400 font-medium transition-colors relative group">
+                        About Us
+                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-brand-500 transition-all duration-300 group-hover:w-full"></span>
+                    </a>
+                </div>
+
+                <div class="hidden md:flex">
+                    <a href="plan-journey.html" class="premium-btn bg-white text-slate-900 px-6 py-2.5 rounded-full font-semibold">Get Started</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="pt-32 pb-16 sm:pt-40 sm:pb-24 overflow-hidden relative min-h-screen flex items-center">
+        <div class="absolute top-0 right-0 -mr-20 -mt-20 w-[40rem] h-[40rem] rounded-full bg-brand-900/30 opacity-60 blur-3xl -z-10 pointer-events-none"></div>
+        <div class="absolute bottom-0 left-0 -ml-20 -mb-20 w-[30rem] h-[30rem] rounded-full bg-blue-900/20 opacity-60 blur-3xl -z-10 pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative w-full">
+            <div class="grid lg:grid-cols-2 gap-12 lg:gap-8 items-center">
+                <div class="max-w-2xl">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-500/10 border border-brand-500/20 text-brand-400 font-medium text-sm mb-6 load-h1">
+                        <span class="w-2 h-2 rounded-full bg-brand-500 animate-pulse shadow-[0_0_8px_rgba(20,184,166,0.8)]"></span>
+                        Smart Crowd Management
+                    </div>
+                    <h1 class="text-5xl sm:text-6xl font-extrabold text-white tracking-tight leading-[1.1] mb-6 load-h1">
+                        Navigate transit <br/>
+                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-400 to-blue-400 drop-shadow-sm">without the crowd.</span>
+                    </h1>
+                    <p class="text-lg sm:text-xl text-slate-400 mb-8 load-p leading-relaxed">
+                        RailEase analyzes real-time station congestion and train capacities to help you find the most comfortable route during peak hours.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4 load-cta">
+                        <a href="live-status.html" class="premium-btn bg-brand-500 text-white px-8 py-3.5 rounded-full font-semibold flex items-center justify-center gap-2 shadow-lg shadow-brand-500/20">
+                            Check Live Status <i data-lucide="arrow-right" class="w-5 h-5"></i>
+                        </a>
+                        <a href="plan-journey.html" class="premium-btn bg-slate-900 text-white border border-slate-700 px-8 py-3.5 rounded-full font-semibold hover:bg-slate-800 hover:border-slate-600 flex items-center justify-center text-center">
+                            Plan a Journey
+                        </a>
+                    </div>
+                </div>
+
+                <div class="relative lg:ml-auto w-full max-w-lg load-visual">
+                    <div class="premium-card bg-slate-900 rounded-3xl p-8 border border-slate-800 relative z-10 shadow-2xl shadow-black/50 text-center">
+                        <i data-lucide="map" class="w-16 h-16 text-brand-500 mx-auto mb-4 drop-shadow-[0_0_12px_rgba(20,184,166,0.5)]"></i>
+                        <h3 class="text-2xl font-bold text-white mb-2">Ready to travel?</h3>
+                        <p class="text-slate-400 mb-6">Experience stress-free commuting with AI-powered crowd predictions.</p>
+                        <a href="plan-journey.html" class="block w-full bg-slate-800 text-white py-3 rounded-xl font-medium border border-slate-700 hover:bg-slate-700 transition-colors">Start Planning</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Quick PNR Check Section -->
+    <section class="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto reveal">
+        <div class="grid lg:grid-cols-2 gap-8">
+            <!-- PNR Lookup -->
+            <div class="bg-slate-900 border border-slate-800 rounded-3xl p-8 premium-card">
+                <div class="flex items-center gap-3 mb-6">
+                    <div class="w-12 h-12 bg-brand-500/10 border border-brand-500/20 rounded-2xl flex items-center justify-center">
+                        <i data-lucide="ticket" class="w-6 h-6 text-brand-400"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold text-white">Quick PNR Check</h3>
+                        <p class="text-sm text-slate-400">Track your booking status instantly</p>
+                    </div>
+                </div>
+                <div class="flex gap-3">
+                    <input id="pnr-input" type="text" placeholder="Enter PNR (e.g. REE669A8)" maxlength="8" class="flex-1 bg-slate-800 border border-slate-700 text-white rounded-xl px-4 py-3 focus:outline-none focus:border-brand-500 transition-colors placeholder-slate-500 uppercase tracking-widest font-mono">
+                    <button onclick="lookupPNR()" class="premium-btn bg-brand-500 text-white px-6 py-3 rounded-xl font-semibold flex items-center gap-2 shrink-0">
+                        <i data-lucide="search" class="w-4 h-4"></i> Track
+                    </button>
+                </div>
+                <div id="pnr-result" class="mt-4 hidden">
+                    <div class="bg-slate-800/50 border border-slate-700 rounded-xl p-4 space-y-2">
+                        <div class="flex justify-between"><span class="text-slate-400">Train</span><span id="pnr-train" class="text-white font-medium"></span></div>
+                        <div class="flex justify-between"><span class="text-slate-400">Route</span><span id="pnr-route" class="text-white font-medium"></span></div>
+                        <div class="flex justify-between"><span class="text-slate-400">Date</span><span id="pnr-date" class="text-white font-medium"></span></div>
+                        <div class="flex justify-between"><span class="text-slate-400">Passengers</span><span id="pnr-pax" class="text-white font-medium"></span></div>
+                        <div class="flex justify-between"><span class="text-slate-400">Total Fare</span><span id="pnr-fare" class="text-brand-400 font-bold"></span></div>
+                        <div class="flex justify-between pt-2 border-t border-slate-700"><span class="text-slate-400">Status</span><span id="pnr-status" class="font-bold"></span></div>
+                    </div>
+                </div>
+                <div id="pnr-error" class="mt-4 hidden">
+                    <div class="bg-rose-500/10 border border-rose-500/20 rounded-xl p-4 text-rose-400 text-sm" id="pnr-error-text"></div>
+                </div>
+            </div>
+            <!-- Network Stats -->
+            <div class="bg-slate-900 border border-slate-800 rounded-3xl p-8 premium-card">
+                <div class="flex items-center gap-3 mb-6">
+                    <div class="w-12 h-12 bg-blue-500/10 border border-blue-500/20 rounded-2xl flex items-center justify-center">
+                        <i data-lucide="activity" class="w-6 h-6 text-blue-400"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold text-white">Network Overview</h3>
+                        <p class="text-sm text-slate-400">Live platform statistics</p>
+                    </div>
+                </div>
+                <div class="space-y-4">
+                    <div class="flex items-center gap-3 bg-slate-800/50 rounded-xl p-4">
+                        <div class="w-10 h-10 bg-emerald-500/10 rounded-lg flex items-center justify-center"><i data-lucide="map-pin" class="w-5 h-5 text-emerald-400"></i></div>
+                        <div class="flex-1"><p class="text-slate-400 text-sm">Active Stations</p><p id="stat-stations" class="text-white font-bold text-lg">--</p></div>
+                    </div>
+                    <div class="flex items-center gap-3 bg-slate-800/50 rounded-xl p-4">
+                        <div class="w-10 h-10 bg-blue-500/10 rounded-lg flex items-center justify-center"><i data-lucide="train" class="w-5 h-5 text-blue-400"></i></div>
+                        <div class="flex-1"><p class="text-slate-400 text-sm">Running Trains</p><p id="stat-trains" class="text-white font-bold text-lg">--</p></div>
+                    </div>
+                    <div class="flex items-center gap-3 bg-slate-800/50 rounded-xl p-4">
+                        <div class="w-10 h-10 bg-orange-500/10 rounded-lg flex items-center justify-center"><i data-lucide="users" class="w-5 h-5 text-orange-400"></i></div>
+                        <div class="flex-1"><p class="text-slate-400 text-sm">Avg. Congestion</p><p id="stat-congestion" class="text-white font-bold text-lg">--</p></div>
+                    </div>
+                    <div class="flex items-center gap-3 bg-slate-800/50 rounded-xl p-4">
+                        <div class="w-10 h-10 bg-rose-500/10 rounded-lg flex items-center justify-center"><i data-lucide="alert-triangle" class="w-5 h-5 text-rose-400"></i></div>
+                        <div class="flex-1"><p class="text-slate-400 text-sm">Critical Hubs</p><p id="stat-critical" class="text-white font-bold text-lg">--</p></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        lucide.createIcons();
+        window.addEventListener('scroll', () => {
+            document.getElementById('navbar').classList.toggle('nav-scrolled', window.scrollY > 20);
+        });
+        setTimeout(() => { document.querySelectorAll('.reveal').forEach(el => el.classList.add('is-visible')); }, 100);
+
+        // PNR Lookup
+        async function lookupPNR() {
+            const input = document.getElementById('pnr-input');
+            const resultEl = document.getElementById('pnr-result');
+            const errorEl = document.getElementById('pnr-error');
+            const pnr = (input.value || '').trim().toUpperCase();
+            resultEl.classList.add('hidden');
+            errorEl.classList.add('hidden');
+            if (!pnr) { errorEl.classList.remove('hidden'); document.getElementById('pnr-error-text').textContent = 'Please enter a PNR number.'; return; }
+            try {
+                const res = await fetch('/api/bookings/pnr/' + pnr);
+                const data = await res.json();
+                if (!data.success) { errorEl.classList.remove('hidden'); document.getElementById('pnr-error-text').textContent = data.error || 'PNR not found.'; return; }
+                const b = data.data;
+                document.getElementById('pnr-train').textContent = b.train_number + ' - ' + b.train_name;
+                document.getElementById('pnr-route').textContent = b.source_name + ' \u2192 ' + b.dest_name;
+                document.getElementById('pnr-date').textContent = b.travel_date;
+                document.getElementById('pnr-pax').textContent = b.passengers;
+                document.getElementById('pnr-fare').textContent = '$' + b.total_fare.toFixed(2);
+                const statusEl = document.getElementById('pnr-status');
+                statusEl.textContent = b.status.charAt(0).toUpperCase() + b.status.slice(1);
+                statusEl.className = 'font-bold ' + (b.status === 'confirmed' ? 'text-emerald-400' : 'text-rose-400');
+                resultEl.classList.remove('hidden');
+            } catch (e) { errorEl.classList.remove('hidden'); document.getElementById('pnr-error-text').textContent = 'Server error. Please try again.'; }
+        }
+        document.getElementById('pnr-input').addEventListener('keydown', function(e) { if (e.key === 'Enter') lookupPNR(); });
+
+        // Network Stats
+        async function loadNetworkStats() {
+            try {
+                const res = await fetch('/api/live-status');
+                const data = await res.json();
+                if (!data.success) return;
+                document.getElementById('stat-stations').textContent = data.data.length;
+                const avgCong = Math.round(data.data.reduce((s, d) => s + d.congestion, 0) / data.data.length);
+                document.getElementById('stat-congestion').textContent = avgCong + '%';
+                document.getElementById('stat-critical').textContent = data.data.filter(d => d.level === 'CRITICAL').length;
+            } catch (e) {}
+            try {
+                const res = await fetch('/api/trains');
+                const data = await res.json();
+                if (data.success) document.getElementById('stat-trains').textContent = data.count;
+            } catch (e) {}
+        }
+        loadNetworkStats();
+    </script>
+</body>
+</html>

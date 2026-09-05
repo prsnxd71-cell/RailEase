@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us | RailEase</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = { theme: { extend: { fontFamily: { sans: ['Inter', 'sans-serif'] }, colors: { brand: { 400: '#2dd4bf', 500: '#14b8a6', 900: '#134e4a' } } } } }
+    </script>
+    <style>
+        body { background-color: #020617; 
+    background-image: 
+        linear-gradient(to bottom, rgba(2, 6, 23, 0.85), rgba(2, 6, 23, 0.874)), 
+        url('Traindesign.png'); 
+    background-size: cover; background-position: center; background-attachment: fixed; background-repeat: no-repeat; 
+    -webkit-font-smoothing: antialiased; }
+        .nav-scrolled { background-color: rgba(2, 6, 23, 0.85); backdrop-filter: blur(16px); border-bottom: 1px solid rgba(30, 41, 59, 0.5); }
+        .fade-up { opacity: 0; transform: translateY(20px); animation: fadeUp 0.7s forwards cubic-bezier(0.16, 1, 0.3, 1); }
+        @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+    </style>
+</head>
+<body class="bg-slate-950 text-slate-300">
+
+    <nav id="navbar" class="fixed w-full z-50 top-0 transition-all duration-300 bg-transparent border-b border-transparent">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center h-20">
+            <a href="index.html" class="flex items-center gap-2 group">
+                <div class="w-10 h-10 bg-brand-500 rounded-xl flex items-center justify-center transform group-hover:scale-105 transition-transform">
+                    <i data-lucide="train" class="text-white w-6 h-6"></i>
+                </div>
+                <span class="font-bold text-2xl text-white">RailEase</span>
+            </a>
+            <div class="hidden md:flex space-x-8">
+                <a href="live-status.html" class="text-slate-300 hover:text-brand-400 font-medium transition-colors">Live Status</a>
+                <a href="plan-journey.html" class="text-slate-300 hover:text-brand-400 font-medium transition-colors">Plan Journey</a>
+                <a href="about.html" class="text-brand-400 font-medium">About Us</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="pt-32 pb-24 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto text-center fade-up">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-500/10 border border-brand-500/20 text-brand-400 font-medium text-sm mb-6">
+            Our Mission
+        </div>
+        <h1 class="text-4xl sm:text-5xl font-extrabold text-white mb-6 tracking-tight">Redefining the daily commute.</h1>
+        <p class="text-xl text-slate-400 leading-relaxed mb-16">
+            We built RailEase because we believe public transit should be efficient, predictable, and stress-free. By harnessing real-time data and predictive modeling, we empower commuters to make intelligent travel decisions.
+        </p>
+
+        <div class="grid sm:grid-cols-3 gap-8 text-left border-t border-slate-800 pt-16">
+            <div class="bg-slate-900 border border-slate-800 p-6 rounded-2xl">
+                <i data-lucide="activity" class="w-8 h-8 text-brand-500 mb-4"></i>
+                <h3 class="text-xl font-bold text-white mb-2">Real-time Data</h3>
+                <p class="text-slate-400 text-sm">We process millions of data points every minute to give you the most accurate live status of the transit network.</p>
+            </div>
+            <div class="bg-slate-900 border border-slate-800 p-6 rounded-2xl">
+                <i data-lucide="shield-check" class="w-8 h-8 text-brand-500 mb-4"></i>
+                <h3 class="text-xl font-bold text-white mb-2">Privacy First</h3>
+                <p class="text-slate-400 text-sm">Crowd density is aggregated anonymously. We never track individual users, ensuring your commute remains private.</p>
+            </div>
+            <div class="bg-slate-900 border border-slate-800 p-6 rounded-2xl">
+                <i data-lucide="globe" class="w-8 h-8 text-brand-500 mb-4"></i>
+                <h3 class="text-xl font-bold text-white mb-2">Open Platform</h3>
+                <p class="text-slate-400 text-sm">Working alongside city infrastructure to build smarter, more responsive mobility solutions for the future.</p>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-slate-950 border-t border-slate-900 py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <p class="text-slate-500 text-sm">© 2026 RailEase Technologies. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+        window.addEventListener('scroll', () => { document.getElementById('navbar').classList.toggle('nav-scrolled', window.scrollY > 10); });
+    </script>
+</body>
+</html>

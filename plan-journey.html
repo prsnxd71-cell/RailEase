@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plan Journey | RailEase</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = { theme: { extend: { fontFamily: { sans: ['Inter', 'sans-serif'] }, colors: { brand: { 400: '#2dd4bf', 500: '#14b8a6', 900: '#134e4a' } } } } }
+    </script>
+    <style>
+        body { background-color: #020617; 
+    background-image: 
+        linear-gradient(to bottom, rgba(2, 6, 23, 0.85), rgba(2, 6, 23, 0.874)), 
+        url('Traindesign.png'); 
+    background-size: cover; background-position: center; background-attachment: fixed; background-repeat: no-repeat;
+    -webkit-font-smoothing: antialiased; }
+        .nav-scrolled { background-color: rgba(2, 6, 23, 0.85); backdrop-filter: blur(16px); border-bottom: 1px solid rgba(30, 41, 59, 0.5); }
+        .slide-in { opacity: 0; transform: translateX(-20px); animation: slideIn 0.5s forwards cubic-bezier(0.16, 1, 0.3, 1); }
+        @keyframes slideIn { to { opacity: 1; transform: translateX(0); } }
+    </style>
+</head>
+<body class="bg-slate-950 text-slate-300 min-h-screen flex flex-col">
+
+    <nav id="navbar" class="fixed w-full z-50 top-0 transition-all duration-300 bg-transparent border-b border-transparent">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center h-20">
+            <a href="index.html" class="flex items-center gap-2 group">
+                <div class="w-10 h-10 bg-brand-500 rounded-xl flex items-center justify-center transform group-hover:scale-105 transition-transform">
+                    <i data-lucide="train" class="text-white w-6 h-6"></i>
+                </div>
+                <span class="font-bold text-2xl text-white">RailEase</span>
+            </a>
+            <div class="hidden md:flex space-x-8">
+                <a href="live-status.html" class="text-slate-300 hover:text-brand-400 font-medium transition-colors">Live Status</a>
+                <a href="plan-journey.html" class="text-brand-400 font-medium">Plan Journey</a>
+                <a href="about.html" class="text-slate-300 hover:text-brand-400 font-medium transition-colors">About Us</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="pt-32 pb-16 px-4 flex-grow flex items-center justify-center relative">
+        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-2xl h-px bg-gradient-to-r from-transparent via-brand-500/50 to-transparent"></div>
+        
+        <div class="w-full max-w-4xl bg-slate-900 border border-slate-800 rounded-3xl p-8 shadow-2xl shadow-black/50 grid md:grid-cols-2 gap-12 slide-in delay-100">
+            <div>
+                <h1 class="text-3xl font-bold text-white mb-2">Plan your route</h1>
+                <p class="text-slate-400 mb-8">Enter your details to find the least crowded options.</p>
+                
+                <div class="space-y-6 relative">
+                    <div class="absolute left-6 top-8 bottom-8 w-0.5 bg-slate-800 -z-10"></div>
+                    
+                    <div class="relative flex items-center gap-4">
+                        <div class="w-4 h-4 rounded-full border-4 border-brand-500 bg-slate-900 ml-4"></div>
+                        <input type="text" id="source-input" placeholder="Starting Station" class="w-full bg-slate-950 border border-slate-800 text-white rounded-xl px-4 py-3 focus:border-brand-500 focus:outline-none transition-colors">
+                    </div>
+                    
+                    <div class="relative flex items-center gap-4">
+                        <div class="w-4 h-4 rounded-full border-4 border-orange-500 bg-slate-900 ml-4"></div>
+                        <input type="text" id="dest-input" placeholder="Destination" class="w-full bg-slate-950 border border-slate-800 text-white rounded-xl px-4 py-3 focus:border-orange-500 focus:outline-none transition-colors">
+                    </div>
+
+                    <div class="pt-4">
+                        <button onclick="searchTrains()" class="w-full bg-brand-500 text-white py-3.5 rounded-xl font-bold hover:bg-brand-400 transition-colors shadow-lg shadow-brand-500/20 active:scale-95 transform">
+                            Search Routes
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div id="results-panel" class="bg-slate-950 rounded-2xl border border-slate-800 p-6 flex flex-col justify-center items-center text-center hidden">
+                <div id="results-content"></div>
+            </div>
+        </div>
+    </main>
+
+    <section id="booking-section" class="hidden pt-8 pb-16 px-4">
+        <div class="max-w-4xl mx-auto bg-slate-900 border border-slate-800 rounded-3xl p-8 shadow-2xl shadow-black/50">
+            <h2 class="text-2xl font-bold text-white mb-6">Complete Your Booking</h2>
+            <form id="booking-form" onsubmit="submitBooking(event)">
+                <input type="hidden" id="booking-train-id">
+                <div class="grid sm:grid-cols-2 gap-4 mb-4">
+                    <div>
+                        <label class="block text-sm text-slate-400 mb-1">Full Name *</label>
+                        <input type="text" id="cust-name" required class="w-full bg-slate-950 border border-slate-800 text-white rounded-xl px-4 py-3 focus:border-brand-500 focus:outline-none">
+                    </div>
+                    <div>
+                        <label class="block text-sm text-slate-400 mb-1">Email *</label>
+                        <input type="email" id="cust-email" required class="w-full bg-slate-950 border border-slate-800 text-white rounded-xl px-4 py-3 focus:border-brand-500 focus:outline-none">
+                    </div>
+                </div>
+                <div class="grid sm:grid-cols-2 gap-4 mb-4">
+                    <div>
+                        <label class="block text-sm text-slate-400 mb-1">Travel Date *</label>
+                        <input type="date" id="travel-date" required class="w-full bg-slate-950 border border-slate-800 text-white rounded-xl px-4 py-3 focus:border-brand-500 focus:outline-none">
+                    </div>
+                    <div>
+                        <label class="block text-sm text-slate-400 mb-1">Passengers (1-6)</label>
+                        <input type="number" id="passengers" value="1" min="1" max="6" required class="w-full bg-slate-950 border border-slate-800 text-white rounded-xl px-4 py-3 focus:border-brand-500 focus:outline-none">
+                    </div>
+                </div>
+                <div id="booking-result" class="hidden mb-4"></div>
+                <div class="flex gap-3">
+                    <button type="submit" class="flex-1 bg-brand-500 text-white py-3 rounded-xl font-bold hover:bg-brand-400 transition-colors">Confirm Booking</button>
+                    <button type="button" onclick="document.getElementById('booking-section').classList.add('hidden')" class="px-6 py-3 border border-slate-700 text-slate-300 rounded-xl">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <script>
+        lucide.createIcons();
+        window.addEventListener('scroll', () => { document.getElementById('navbar').classList.toggle('nav-scrolled', window.scrollY > 10); });
+        setTimeout(() => { document.querySelectorAll('.reveal').forEach(el => el.classList.add('is-visible')); }, 100);
+
+        async function searchTrains() {
+            const source = document.getElementById('source-input').value.trim();
+            const dest = document.getElementById('dest-input').value.trim();
+            const panel = document.getElementById('results-panel');
+            const content = document.getElementById('results-content');
+            if (!source || !dest) { content.innerHTML = '<p class=\"text-rose-400\">Please enter both origin and destination.</p>'; panel.classList.remove('hidden'); return; }
+            content.innerHTML = '<p class=\"text-slate-400\">Searching...</p>'; panel.classList.remove('hidden');
+            try {
+                const params = new URLSearchParams({ source, destination: dest });
+                const res = await fetch('/api/trains?' + params);
+                const data = await res.json();
+                if (!data.success || !data.data || data.data.length === 0) { content.innerHTML = '<p class=\"text-slate-400\">No trains found.</p>'; return; }
+                let html = '<h3 class=\"text-white font-semibold mb-4\">' + data.data.length + ' Train(s) Found</h3>';
+                for (const t of data.data) {
+                    const sc = t.status === 'on_time' ? 'emerald' : t.status === 'delayed' ? 'orange' : 'rose';
+                    html += '<div class=\"border border-slate-800 rounded-xl p-4 mb-3 bg-slate-900/60\">' +
+                        '<div class=\"flex justify-between items-center mb-2\"><div><span class=\"text-white font-bold\">' + t.train_name + '</span> <span class=\"text-slate-500 text-sm\">' + t.number + '</span></div>' +
+                        '<span class=\"px-2 py-1 bg-' + sc + '-500/10 text-' + sc + '-400 text-xs font-bold rounded uppercase\">' + t.status.replace('_',' ') + '</span></div>' +
+                        '<div class=\"flex justify-between text-sm text-slate-400 mb-2\"><span>' + t.source_city + ' (' + t.source_code + ') — ' + t.departure_time + '</span><span>' + t.duration + '</span></div>' +
+                        '<div class=\"flex justify-between text-sm text-slate-400 mb-2\"><span>' + t.dest_city + ' (' + t.dest_code + ') — ' + t.arrival_time + '</span><span class=\"text-brand-400 font-semibold\">$' + t.base_fare.toFixed(2) + '</span></div>' +
+                        '<div class=\"text-xs text-slate-500 mb-2\">' + t.seats_available + ' seats available</div>' +
+                        '<button onclick=\"openBooking(' + t.id + ')\" class=\"w-full bg-brand-500 text-white py-2 rounded-lg font-semibold hover:bg-brand-400\">Book Now</button></div>';
+                }
+                content.innerHTML = html; lucide.createIcons();
+            } catch (err) { content.innerHTML = '<p class=\"text-rose-400\">Server error.</p>'; }
+        }
+
+        function openBooking(trainId) {
+            document.getElementById('booking-train-id').value = trainId;
+            const s = document.getElementById('booking-section'); s.classList.remove('hidden'); s.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        async function submitBooking(e) {
+            e.preventDefault();
+            const payload = {
+                customerName: document.getElementById('cust-name').value.trim(),
+                customerEmail: document.getElementById('cust-email').value.trim(),
+                trainId: document.getElementById('booking-train-id').value,
+                travelDate: document.getElementById('travel-date').value,
+                passengers: parseInt(document.getElementById('passengers').value) || 1
+            };
+            const resultDiv = document.getElementById('booking-result');
+            try {
+                const res = await fetch('/api/bookings', { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify(payload) });
+                const data = await res.json();
+                if (data.success) {
+                    resultDiv.innerHTML = '<div class=\"bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 p-4 rounded-xl mb-4\"><p class=\"font-bold text-lg\">Booking Confirmed! PNR: ' + data.data.pnr + '</p><p>Train: ' + data.data.train_name + ' — Passengers: ' + data.data.passengers + ' — Total: $' + data.data.total_fare.toFixed(2) + '</p></div>';
+                    resultDiv.classList.remove('hidden'); e.target.reset();
+                } else { resultDiv.innerHTML = '<p class=\"text-rose-400 text-sm\">' + (data.error || 'Booking failed.') + '</p>'; resultDiv.classList.remove('hidden'); }
+            } catch (err) { resultDiv.innerHTML = '<p class=\"text-rose-400 text-sm\">Server error.</p>'; resultDiv.classList.remove('hidden'); }
+        }
+    </script>
+</body>
+</html>
