@@ -1,0 +1,1 @@
+@media(max-width:480px){.coach-layout,.coach-layout>*,.train-card,.train-track,.train{min-width:0}.train{grid-template-columns:repeat(5,minmax(0,1fr))}.coach{min-width:0;padding:0;font-size:9px}.coach small{font-size:7px;margin-left:1px}.coach-copy{max-width:100%}.coach-copy h2,.coach-copy>p{max-width:100%}.page-glow{max-width:100vw}}
